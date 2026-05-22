@@ -1880,3 +1880,35 @@ body.cursor-hover #cursor-ring {
         text-align: center;
     }
 }
+
+/* ===================== CUSTOM CURSOR STYLES ===================== */
+#cursor,
+#cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9999;
+}
+#cursor {
+  width: 8px;
+  height: 8px;
+  background: var(--text);
+  border-radius: 50%;
+}
+#cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+}
+body {
+  cursor: none;
+}
+.cursor-hover #cursor-ring {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 0.6;
+}
