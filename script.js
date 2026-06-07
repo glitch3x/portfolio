@@ -106,80 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 100);
 
   // ===================================================
-  // CUSTOM MOUSE CURSOR PHYSICS
+  // CUSTOM MOUSE CURSOR PHYSICS (Removed as per request)
   // ===================================================
-  const cursor = document.getElementById('cursor');
-  const cursorRing = document.getElementById('cursor-ring');
-  
-  if (cursor && cursorRing) {
-    let mouseX = 0;
-    let mouseY = 0;
-    let ringX = 0;
-    let ringY = 0;
-    let cursorVisible = false;
-    
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      
-      // Make cursor visible on first move
-      if (!cursorVisible) {
-        cursor.style.opacity = '1';
-        cursorRing.style.opacity = '1';
-        cursorVisible = true;
-      }
-      
-      // Target dot positions instantly
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top = `${mouseY}px`;
-    });
-    
-    // Physics loop using requestAnimationFrame (Linear Interpolation)
-    const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
-    
-    const animateCursorRing = () => {
-      ringX = lerp(ringX, mouseX, 0.12);
-      ringY = lerp(ringY, mouseY, 0.12);
-      
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
-      
-      requestAnimationFrame(animateCursorRing);
-    };
-    animateCursorRing();
-    
-    // Hide default cursor when leaving the window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursorRing.style.opacity = '0';
-      cursorVisible = false;
-    });
-
-    // Custom Cursor expansion on hover over interactive elements
-    const updateHovers = () => {
-      const hoverElements = document.querySelectorAll(
-        'a, button, input, textarea, .tilt-card, .stack-pill, .nav__brand, .project-featured, .contact-links a'
-      );
-      
-      hoverElements.forEach(el => {
-        // Avoid duplicate event listeners
-        if (el.dataset.hasCursorHover) return;
-        el.dataset.hasCursorHover = 'true';
-        
-        el.addEventListener('mouseenter', () => {
-          document.body.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          document.body.classList.remove('cursor-hover');
-        });
-      });
-    };
-    updateHovers();
-    
-    // Watch for new DOM elements
-    const observer = new MutationObserver(updateHovers);
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
 
   // ===================================================
   // MAGNETIC BUTTON EFFECT
