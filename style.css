@@ -2698,6 +2698,15 @@ body.cursor-hover #cursor-ring {
     background: #ffffff;
 }
 
+@media (max-width: 900px) {
+    .contact-light-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-light-form .form-group-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .btn--submit-light {
     background: #1a1a1a;
     color: #ffffff;
